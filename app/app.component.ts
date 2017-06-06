@@ -7,7 +7,7 @@ import { Component} from '@angular/core';
       <h1>Recipe Box</h1>
       <ul>
         <li *ngFor="let recipe of recipes">
-          <h3>{{recipe.title}}</h3>
+          <h3>{{recipe.title}}</h3><button (click)="editRecipe(recipe)">Edit Recipe!</button>
           <p>Ingredients:<p>
           <ul>
             <li *ngFor="let ingredient of recipe.ingredients">{{ingredient}}</li>
@@ -27,6 +27,9 @@ export class AppComponent {
     new Recipe("Chocolate Chip Cookies", "Mix Mix Mix", ["Milk", "Eggs", "Love"]),
     new Recipe("Potato Chip Cookies", "Mix Mix Mix", ["Milk", "Eggs", "Love"])
   ];
+  editRecipe(recipe) {
+    alert(`You want to edit ${recipe.title}`);
+  }
 }
 
 export class Recipe {
