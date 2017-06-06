@@ -15,6 +15,16 @@ import { Component} from '@angular/core';
           <p>{{recipe.directions}}</p>
         </li>
       </ul>
+      <hr>
+      <div>
+        <h3>Edit {{selectedRecipe.title}}</h3>
+        <label>Title:</label>
+        <input [(ngModel)]="selectedRecipe.title">
+        <label>Priority:</label>
+        <input type="radio" [(ngModel)]="selectedRecipe.priority" [value]="1"> 1 (Low)
+        <input type="radio" [(ngModel)]="selectedRecipe.priority" [value]="2"> 2 (Medium)
+        <input type="radio" [(ngModel)]="selectedRecipe.priority" [value]="3"> 3 (High)
+      </div>
     </div>
   `
 })
@@ -28,10 +38,13 @@ export class AppComponent {
     new Recipe("Potato Chip Cookies", "Mix Mix Mix", ["Milk", "Eggs", "Love"], 1),
     new Recipe("Tortilla Chip Cookies", "Mix Mix Mix", ["Milk", "Eggs", "Love"], 2)
   ];
-  editRecipe(recipe) {
-    alert(`You want to edit ${recipe.title}`);
+  selectedRecipe: Recipe = this.recipes[0];
+
+  editRecipe(recipe: Recipe) {
+    this.selectedRecipe = recipe;
   }
-  priorityColor(recipe) {
+
+  priorityColor(recipe: Recipe) {
     if (recipe.priority === 3){
       return "bg-danger";
     } else if (recipe.priority === 2){
@@ -40,6 +53,7 @@ export class AppComponent {
       return "bg-info";
     }
   }
+
 }
 
 export class Recipe {
